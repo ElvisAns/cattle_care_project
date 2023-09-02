@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simulated Accelerometer Data Visualization</title>
+    <style>
+        /* Style for the container */
+        .container {
+          display:flex;
+          justify-content : center;
+        }
+        .container > canvas{
+          border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        <script>
+            // Initialize Three.js
+            const scene = new THREE.Scene();
+          const w = window.innerWidth -20;
+          const h = window.innerHeight/2;
+            const camera = new THREE.PerspectiveCamera(75, w/h, 0.1, 1000); // Set the canvas size to 200x200
+            const renderer = new THREE.WebGLRenderer();
+            renderer.setSize(w, h); // Set the canvas size to 200x200
+            document.querySelector('.container').appendChild(renderer.domElement); // Append the canvas to the container
+
+            // Create a group to hold the axes lines, labels, and the flat box
+            const axesGroup = new THREE.Group();
+            scene.add(axesGroup);
+
+            // Define the font loader
+            const fontLoader = new THREE.FontLoader();
+
+            // Load the Helvetiker font
+            fontLoader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function(font) {
+                // Define the axis length (adjust this value as needed)
+                const axisLength = 2.8; // Increase or decrease this value as desired
+
+                // Function to create an axis with lines and labels
+                function createAxisWithLabel(color, start, end, label) {
+                    const axis = new THREE.Object3D();
+
+                    // Create line geometries for axes
+                    const lineGeometry = new THREE.BufferGeometry().setFromPoints([start.clone(), end.clone().multiplyScalar(axisLength)]);
+
+                    // Create line material with the specified color
+                    const lineMaterial = new THREE.LineBasicMaterial({ color: color });
+
+                    // Create line mesh
+                    const line = new THREE.Line(lineGeometry, lineMaterial);
+
+                    // Add line to the axis object
+                    axis.add(line);
+
+                  
+                // Create an arrowhead for the axis
+                  const arrowGeometry = new THREE.ConeGeometry(0.05, 0.2, 32);
+                  const arrowMaterial = new THREE.MeshBasicMaterial({ color: color });
+                  const arrow = new THREE.Mesh(arrowGeometry, arrowMaterial);
+                  arrow.position.copy(end.clone().multiplyScalar(axisLength));
+  
+                  // Add arrowhead to the axis object
+                  axis.add(arrow);
+
+                    // Create text geometry for label
+                    const textGeometry = new THREE.TextGeometry(label, {
+                        font: font, // Use the loaded font
+                        size: 0.15, // Adjust the text size
+                        height: 0.05
+                    });
+
+                    // Create material for the text
+                    const textMaterial = new THREE.MeshBasicMaterial({ color: color });
+
+                    // Create mesh for the text
+                    const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+
+                    // Position the text label
+                    textMesh.position.copy(end.clone().multiplyScalar(axisLength + 0.2)); // Adjust position
+
+                    // Add text label to the axis object
+                    axis.add(textMesh);
+
+                    return axis;
+                }
+
+                // Create axes with labels
+                const axisX = createAxisWithLabel(0xff0000, new THREE.Vector3(0, 0, 0), new THREE.Vector3(1, 0, 0), 'X');
+                const axisY = createAxisWithLabel(0x00ff00, new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 1, 0), 'Y');
+                const axisZ = createAxisWithLabel(0xffff00, new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, 1), 'Z');
+
+                // Add axes to the group
+                axesGroup.add(axisX);
+                axesGroup.add(axisY);
+                axesGroup.add(axisZ);
+
+                // Box geometry and material
+                const boxGeometry = new THREE.BoxGeometry(0.2, 0.2, 0.01);
+                const boxMaterial = new THREE.MeshBasicMaterial({ color: 0x0000ff });
+
+                // Create the flat box mesh
+                const flatBox = new THREE.Mesh(boxGeometry, boxMaterial);
+
+                // Initially position the flat box at the origin
+                flatBox.position.set(0, 0, 0);
+
+                // Add the flat box to the group
+                axesGroup.add(flatBox);
+
+                // Arrows
+                const arrowX = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(1.2, 0, 0), 0.1, 0xff0000);
+                const arrowY = new THREE.ArrowHelper(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 1.2, 0), 0.1, 0x00ff00);
+                const arrowZ = new THREE.ArrowHelper(new THREE.Vector3(0, 0, 1), new THREE.Vector3(0, 0, 1.2), 0.1, 0xffff00);
+
+                // Add arrows to the group
+                axesGroup.add(arrowX, arrowY, arrowZ);
+
+                // Set initial camera position
+                camera.position.z = 5;
+
+                // Simulated accelerometer data
+                window.accelerationX = 0;
+                window.accelerationY = 0;
+                window.accelerationZ = 0;
+
+                // Function to update accelerometer data and flat box position
+                function updateAccelerometerData() {
+                    // Simulated data: Generate random acceleration changes
+                    //window.accelerationX = (Math.random() - 0.5) * 0.1;
+                   // window.accelerationY = (Math.random() - 0.5) * 0.1;
+                   // window.accelerationZ = (Math.random() - 0.5) * 0.1;
+
+                    // Update the position of the flat box based on the accelerometer data
+                    flatBox.position.set(window.accelerationX, window.accelerationY, window.accelerationZ);
+                }
+
+                // Interval to update accelerometer data every 10 seconds
+                setInterval(() => {
+                    updateAccelerometerData();
+                }, 1000);
+
+                // Animation loop
+                const animate = () => {
+                    requestAnimationFrame(animate);
+
+                    // Rotate the group of axes based on accelerometer data
+                    axesGroup.rotation.set(window.accelerationX, window.accelerationY, window.accelerationZ);
+
+                    renderer.render(scene, camera);
+                };
+
+                /*
+                // Handle window resizing
+                window.addEventListener('resize', () => {
+                    const newWidth = window.innerWidth;
+                    const newHeight = window.innerHeight;
+                    camera.aspect = newWidth / newHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(newWidth, newHeight);
+                });
+                */
+                // Start the animation loop
+                animate();
+            });
+        </script>
+    </div>
+</body>
+</html>
