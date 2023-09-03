@@ -5,9 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#8c35ff" />
     <!-- Set title of web page -->
-    <title>GFG Circular progress Bar</title>
+    <title>Cattle care system</title>
 
     <style>
         @font-face {
@@ -37,6 +41,9 @@
             padding-right: 0;
             display: flex;
             overflow: hidden;
+            border-radius: 20px;
+            border: 1px solid black;
+            position: relative;
         }
 
         .body-2 {
@@ -49,6 +56,7 @@
             margin-top: 44px;
             margin-bottom: 0;
             font-family: bolderFont;
+            padding-left: 10px;
         }
         
 
@@ -262,7 +270,7 @@
             bottom: 0;
         }
         .notification_bell_container{
-            position: fixed;
+            position: absolute;
             top: 20px;
             right: 20px;
             cursor: pointer;
@@ -325,6 +333,9 @@
             text-align: center;
             cursor: pointer;
         }
+        .paragraph-30{
+            padding-left: 10px;
+        }
     </style>
 
 </head>
@@ -360,7 +371,7 @@
             <span class="notification_counter">0</span>
         </div>
         <h1 class="heading-15">Smart Hub</h1>
-        <p>Cattle care smart app</p>
+        <p class="paragraph-30">Cattle care smart app</p>
         <div class="div-block-6">
             <div class="div-block-5">
                 <div class="div-block-7">
