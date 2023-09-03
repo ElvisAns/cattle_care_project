@@ -1,170 +1,414 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Simulated Accelerometer Data Visualization</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Set title of web page -->
+    <title>GFG Circular progress Bar</title>
+
     <style>
-        /* Style for the container */
-        .container {
-          display:flex;
-          justify-content : center;
+        @font-face {
+            font-family: bolderFont;
+            src: url(fonts/Fontspring-DEMO-eurocine-narrow.ttf);
         }
-        .container > canvas{
-          border-radius: 20px;
+        @font-face {
+            font-family: elegantNumber;
+            src: url(fonts/Kinn-Light.ttf);
+        }
+        @font-face {
+            font-family: allText;
+            src: url(fonts/MornLight.ttf);
+        }
+        html,body{
+            font-family: allText;
+        }
+        .section-4 {
+            width: 100%;
+            max-width: 400px;
+            min-width: 300px;
+            background-color: #fff;
+            flex-direction: column;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 0;
+            padding-right: 0;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .body-2 {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .heading-15 {
+            color: #8c35ff;
+            margin-top: 44px;
+            margin-bottom: 0;
+            font-family: bolderFont;
+        }
+        
+
+        .div-block-5 {
+            width: 200px;
+            height: 200px;
+            grid-column-gap: 10px;
+            grid-row-gap: 10px;
+            text-align: center;
+            background-color: #fcf5f4;
+            border-radius: 100%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 0%;
+            margin-left: 0;
+            margin-right: 0;
+            display: flex;
+            position: relative;
+            box-shadow: 0 0 20px 20px rgba(0, 30, 255, .2);
+        }
+
+        .div-block-6 {
+            width: 240px;
+            height: 240px;
+            background-color: rgba(0, 0, 0, 0);
+            border: 1px solid #fff;
+            border-radius: 100%;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            position: relative;
+            overflow: visible;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, .2);
+        }
+
+        .text-block-7 {
+            font-size: 52px;
+            line-height: 52px;
+            display: inline;
+        }
+
+        .text-block-8 {
+            margin-top: 0;
+            padding-left: 84px;
+            font-size: 20px;
+            display: block;
+            position: absolute;
+            top: -1px;
+        }
+
+        .div-block-7 {
+            position: relative;
+            font-family: elegantNumber;
+        }
+
+        .div-block-8 {
+            width: 2px;
+            height: 10px;
+            background-color: #cf159e;
+            position: absolute;
+            top: -21.5px;
+        }
+
+        .div-block-9 {
+            width: 100%;
+            grid-column-gap: 80px;
+            grid-row-gap: 80px;
+            flex: 1;
+            justify-content: space-between;
+            margin-top: 41px;
+            display: flex;
+            position: relative;
+        }
+
+        .div-b-1 {
+            width: 50%;
+            height: 100%;
+            background-color: #f4f3f0;
+            border-top-right-radius: 50px;
+            position: absolute;
+            bottom: 0;
+            left: -30px;
+        }
+
+        .div-b-2 {
+            width: 50%;
+            height: 100%;
+            background-color: #f4f3f0;
+            border-top-left-radius: 50px;
+            position: absolute;
+            bottom: 0;
+            right: -36px;
+        }
+
+        .div-b {
+            width: 100%;
+            height: 80%;
+            background-color: #f4f3f0;
+            justify-content: center;
+            align-items: center;
+            margin-top: 56px;
+            margin-left: 0;
+            margin-right: 0;
+            display: flex;
+            position: absolute;
+            bottom: 0;
+            left: auto;
+        }
+
+        .div-c {
+            width: 60px;
+            height: 100%;
+            background-color: #fff;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-left: 5px;
+            padding-left: 0;
+            display: flex;
+        }
+
+        .div-block-10 {
+            z-index: 10;
+            width: 100px;
+            height: 100px;
+            background-color: #5e616b;
+            border-radius: 100%;
+            position: relative;
+            box-shadow: 0 0 20px 13px rgba(0, 0, 0, .2);
+        }
+
+        .div-block-11 {
+            width: 50%;
+            flex: 0 auto;
+            padding-top: 50px;
+            padding-left: 10px;
+            position: relative;
+        }
+
+        .div-block-12 {
+            width: 50%;
+            text-align: right;
+            flex: 0 auto;
+            padding-top: 50px;
+            padding-right: 10px;
+            position: relative;
+        }
+
+        .heading-16 {
+            font-size: 38px;
+            font-family: elegantNumber;
+        }
+
+        .text-span-2 {
+            font-size: 24px;
+        }
+
+        .paragraph-3 {
+            padding-top: 0;
+            padding-right: 0;
+            font-size: 28px;
+            line-height: 44px;
+            font-family: elegantNumber;
+            margin-top: 0;
+        }
+
+        .image-3 {
+            width: 50px;
+            animation: scaleAnimation 1s alternate infinite;
+        }
+
+        @keyframes scaleAnimation {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.2);
+            }
+        }
+
+        .image-4 {
+            width: 50px;
+            margin-bottom: 20px;
+        }
+
+        .text-span-3,
+        .text-span-4 {
+            font-size: 20px;
+        }
+
+        .text-span-5 {
+            font-size: 20px;
+            line-height: 24px;
+        }
+
+        .superscript,
+        .superscript-2 {
+            line-height: 24px;
+        }
+
+        .div-block-13 {
+            width: 80px;
+            height: 50%;
+            color: #f4f3f0;
+            background-color: #f4f3f0;
+            position: absolute;
+            bottom: 0;
+        }
+        .notification_bell_container{
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+        .notification_bell{
+            height: 50px;
+        }
+        .notification_counter{
+            position: absolute;
+            background-color:#cf159e;
+            color: #f4f3f0;
+            width: 15px;
+            height: 15px;
+            text-align: center;
+            font-size: 10px;
+            padding-top: 2.5px;
+            box-sizing: border-box;
+            border-radius: 100%;
+            right: 4px;
+            top: 4px;
+        }
+        .notifications{
+            position: fixed;
+            background-color: aliceblue;
+            height: 100%;
+            width: 80%;
+            max-width: 400px;
+            left: 0;
+            top: 0;
+            z-index: 999;
+            overflow: auto;
+            padding: 30px 20px;
+            transition: transform 0.6s ease-in-out;
+            transform: translateX(0px);
+        }
+        .notifications.hidden{
+            transform: translateX(-500px); /* on notification click we shall translate it back to 0 */
+        }
+        .notification-entry{
+            border-bottom: 1px #000 solid;
+            margin : 10px 0px;
+        }
+        .notification-entry p{
+            font-size: 14px;
+        }
+        .notification-entry h1{
+            font-size: 20px;
+            color: #8c35ff;
+        }
+        .close_notifications{
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            border: 1px solid black;
+            padding: 5px;
+            width: 10px;
+            height: 10px;
+            font-size: 10px;
+            border-radius: 100%;
+            text-align: center;
+            cursor: pointer;
         }
     </style>
+
 </head>
-<body>
-    <div class="container">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-        <script>
-            // Initialize Three.js
-            const scene = new THREE.Scene();
-          const w = window.innerWidth -20;
-          const h = window.innerHeight/2;
-            const camera = new THREE.PerspectiveCamera(75, w/h, 0.1, 1000); // Set the canvas size to 200x200
-            const renderer = new THREE.WebGLRenderer();
-            renderer.setSize(w, h); // Set the canvas size to 200x200
-            document.querySelector('.container').appendChild(renderer.domElement); // Append the canvas to the container
 
-            // Create a group to hold the axes lines, labels, and the flat box
-            const axesGroup = new THREE.Group();
-            scene.add(axesGroup);
 
-            // Define the font loader
-            const fontLoader = new THREE.FontLoader();
+<body class="body-2">
+    <section class="section-4">
+        <div class="notifications hidden">
+            <span class="close_notifications">X</span>
+            <div class="notification-entry">
+                <h1>Title</h1>
+                <p>The content</p>
+            </div>
+            <div class="notification-entry">
+                <h1>Title</h1>
+                <p>The contentHow to align checkboxes and their labels on cross-browsers using CSS ?
+                    How to Change the Style of <a> Tag Title Attribute ?
+                    How to make textarea 100% without overflow when padding is present ?
+                    How to make HTML table expand on click usin</p>
+            </div>
+            <div class="notification-entry">
+                <h1>Title</h1>
+                <p>The content</p>
+            </div>
+            
+            <div class="notification-entry">
+                <h1>Title</h1>
+                <p>The content</p>
+            </div>
+        </div>
+        <div class="notification_bell_container">
+            <img src="https://lordicon.com/icons/system/solid/46-notification-bell.svg" class="notification_bell">
+            <span class="notification_counter">0</span>
+        </div>
+        <h1 class="heading-15">Smart Hub</h1>
+        <p>Cattle care smart app</p>
+        <div class="div-block-6">
+            <div class="div-block-5">
+                <div class="div-block-7">
+                    <div class="text-block-7">30</div>
+                    <div class="text-block-8">c</div>
+                </div>
+                <p>CATTLE <br>TEMPERATURE</p>
+            </div>
+        </div>
+        <div class="div-block-9">
+            <div class="div-b">
+            </div>
+            <div class="div-b-1"></div>
+            <div class="div-b-2"></div>
+            <div class="div-block-11"><img src="images/Heart_corazón.svg.png" loading="lazy" sizes="50px" srcset="images/Heart_corazón.svg.png 500w, images/Heart_corazón.svg.png 768w" alt="" class="image-3">
+                <h1 class="heading-16">108<span class="text-span-2"><sup>BPM</sup></span></h1>
+            </div>
+            <div class="div-block-12"><img src="images/1807247_orig.png" loading="lazy" alt="" class="image-4">
+                <p class="paragraph-3">1.35<span class="text-span-5"><sup>x</sup></span><br>1.345<span class="text-span-4"><sup class="superscript">y</sup></span><br>1.345<span class="text-span-3"><sup class="superscript-2">z</sup></span></p>
+            </div>
+        </div>
+    </section>
+    <div class="w-embed">
+        <style>
+            .div-b-1 {
+                transform: rotate(30deg) translate(-100px, 80px) scale(1.5);
+            }
 
-            // Load the Helvetiker font
-            fontLoader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function(font) {
-                // Define the axis length (adjust this value as needed)
-                const axisLength = 2.8; // Increase or decrease this value as desired
-
-                // Function to create an axis with lines and labels
-                function createAxisWithLabel(color, start, end, label) {
-                    const axis = new THREE.Object3D();
-
-                    // Create line geometries for axes
-                    const lineGeometry = new THREE.BufferGeometry().setFromPoints([start.clone(), end.clone().multiplyScalar(axisLength)]);
-
-                    // Create line material with the specified color
-                    const lineMaterial = new THREE.LineBasicMaterial({ color: color });
-
-                    // Create line mesh
-                    const line = new THREE.Line(lineGeometry, lineMaterial);
-
-                    // Add line to the axis object
-                    axis.add(line);
-
-                  
-                // Create an arrowhead for the axis
-                  const arrowGeometry = new THREE.ConeGeometry(0.05, 0.2, 32);
-                  const arrowMaterial = new THREE.MeshBasicMaterial({ color: color });
-                  const arrow = new THREE.Mesh(arrowGeometry, arrowMaterial);
-                  arrow.position.copy(end.clone().multiplyScalar(axisLength));
-  
-                  // Add arrowhead to the axis object
-                  axis.add(arrow);
-
-                    // Create text geometry for label
-                    const textGeometry = new THREE.TextGeometry(label, {
-                        font: font, // Use the loaded font
-                        size: 0.15, // Adjust the text size
-                        height: 0.05
-                    });
-
-                    // Create material for the text
-                    const textMaterial = new THREE.MeshBasicMaterial({ color: color });
-
-                    // Create mesh for the text
-                    const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-
-                    // Position the text label
-                    textMesh.position.copy(end.clone().multiplyScalar(axisLength + 0.2)); // Adjust position
-
-                    // Add text label to the axis object
-                    axis.add(textMesh);
-
-                    return axis;
-                }
-
-                // Create axes with labels
-                const axisX = createAxisWithLabel(0xff0000, new THREE.Vector3(0, 0, 0), new THREE.Vector3(1, 0, 0), 'X');
-                const axisY = createAxisWithLabel(0x00ff00, new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 1, 0), 'Y');
-                const axisZ = createAxisWithLabel(0xffff00, new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, 1), 'Z');
-
-                // Add axes to the group
-                axesGroup.add(axisX);
-                axesGroup.add(axisY);
-                axesGroup.add(axisZ);
-
-                // Box geometry and material
-                const boxGeometry = new THREE.BoxGeometry(0.2, 0.2, 0.01);
-                const boxMaterial = new THREE.MeshBasicMaterial({ color: 0x0000ff });
-
-                // Create the flat box mesh
-                const flatBox = new THREE.Mesh(boxGeometry, boxMaterial);
-
-                // Initially position the flat box at the origin
-                flatBox.position.set(0, 0, 0);
-
-                // Add the flat box to the group
-                axesGroup.add(flatBox);
-
-                // Arrows
-                const arrowX = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(1.2, 0, 0), 0.1, 0xff0000);
-                const arrowY = new THREE.ArrowHelper(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 1.2, 0), 0.1, 0x00ff00);
-                const arrowZ = new THREE.ArrowHelper(new THREE.Vector3(0, 0, 1), new THREE.Vector3(0, 0, 1.2), 0.1, 0xffff00);
-
-                // Add arrows to the group
-                axesGroup.add(arrowX, arrowY, arrowZ);
-
-                // Set initial camera position
-                camera.position.z = 5;
-
-                // Simulated accelerometer data
-                window.accelerationX = 0;
-                window.accelerationY = 0;
-                window.accelerationZ = 0;
-
-                // Function to update accelerometer data and flat box position
-                function updateAccelerometerData() {
-                    // Simulated data: Generate random acceleration changes
-                    //window.accelerationX = (Math.random() - 0.5) * 0.1;
-                   // window.accelerationY = (Math.random() - 0.5) * 0.1;
-                   // window.accelerationZ = (Math.random() - 0.5) * 0.1;
-
-                    // Update the position of the flat box based on the accelerometer data
-                    flatBox.position.set(window.accelerationX, window.accelerationY, window.accelerationZ);
-                }
-
-                // Interval to update accelerometer data every 10 seconds
-                setInterval(() => {
-                    updateAccelerometerData();
-                }, 1000);
-
-                // Animation loop
-                const animate = () => {
-                    requestAnimationFrame(animate);
-
-                    // Rotate the group of axes based on accelerometer data
-                    axesGroup.rotation.set(window.accelerationX, window.accelerationY, window.accelerationZ);
-
-                    renderer.render(scene, camera);
-                };
-
-                /*
-                // Handle window resizing
-                window.addEventListener('resize', () => {
-                    const newWidth = window.innerWidth;
-                    const newHeight = window.innerHeight;
-                    camera.aspect = newWidth / newHeight;
-                    camera.updateProjectionMatrix();
-                    renderer.setSize(newWidth, newHeight);
-                });
-                */
-                // Start the animation loop
-                animate();
-            });
-        </script>
+            .div-b-2 {
+                transform: rotate(-30deg) translate(100px, 80px) scale(1.5);
+            }
+        </style>
     </div>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(document).ready(function(){
+        if ("vibrate" in navigator) {
+            navigator.vibrate(1000);
+        } else {
+            // Vibration API is not supported
+            console.log("Vibration API is not supported in this browser.");
+            alert("We wont be able to notify you, your device dont support vibration");
+        }
+
+        $(".notification_bell_container,.close_notifications").click(function(){
+            $(".notifications").toggleClass("hidden");
+        })
+    })
+</script>
 </html>
