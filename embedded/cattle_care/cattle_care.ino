@@ -8,7 +8,6 @@
 // Define WiFi credentials
 const char* ssid = "YourWiFiSSID";
 const char* password = "YourWiFiPassword";
-const char* serverAddress = "https://your_server_endpoint";  // Replace with your server URL
 
 // Define pin assignments for sensors and components
 #define ADXL335_PIN_XOUT 12
@@ -78,6 +77,8 @@ const char* rootCACertificate =
   "m9T8bJUox04FB6b9HbwZ4ui3uRGKLXASUoWNjDNKD/yZkuBjcNqllEdjB+dYxzFf\n"
   "BT02Vf6Dsuimrdfp5gJ0iHRc2jTbkNJtUQoj1iM=\n"
   "-----END CERTIFICATE-----\n";
+
+const char* serverAddress = "https://safetylocker.fly.dev/api/cattle";  // Replace with your server URL
 
 // Not sure if WiFiClientSecure checks the validity date of the certificate.
 // Setting clock just to be sure...
