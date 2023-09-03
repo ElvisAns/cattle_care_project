@@ -8,7 +8,7 @@
 // Define WiFi credentials
 const char* ssid = "YourWiFiSSID";
 const char* password = "YourWiFiPassword";
-const char* serverAddress = "http://your_server_endpoint";  // Replace with your server URL
+const char* serverAddress = "https://your_server_endpoint";  // Replace with your server URL
 
 // Define pin assignments for sensors and components
 #define ADXL335_PIN_XOUT 12
@@ -190,7 +190,6 @@ void sendDataToServer(String payload) {  //serverAddress
         Serial.print("[HTTPS] POST...\n");
         https.addHeader("Content-Type", "application/json");
         int httpCode = https.POST(payload);
-        https.end();
         // httpCode will be negative on error
         if (httpCode > 0) {
           // HTTP header has been send and Server response header has been handled
