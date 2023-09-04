@@ -18,6 +18,11 @@
 
 <body class="body-2">
     <section class="section-4">
+        <div class="red-screen"></div>
+        <div class="splah_screen">
+            <div class="loader"></div>
+            <button id="start_button">Start!</button>
+        </div>
         <div class="notifications hidden">
             <span class="close_notifications">X</span>
             <div id="notifications_list">
@@ -73,7 +78,6 @@
                     <p style="color:${color}">${content}</p>
                 </div>`;
 
-
     $(document).ready(function () {
         const notification_counter = $('#notification_counter');
         if ("vibrate" in navigator) {
@@ -125,10 +129,25 @@
 
                     if (ob.bpm < 30 || ob.bpm > 150 || ob.temperature > 40 || ob.temperature < 10) {
                         if ("vibrate" in navigator) {
-                            navigator.vibrate([500, 200, 500, 1000]);
+                            navigator.vibrate([2000, 1000, 2000, 1000, 2000]);
                         } else {
                             console.log("Vibration API not supported");
                         }
+                        let i = 10;
+                        $('.red-screen').css('display', 'block');
+                        let flasher = setInterval(function () {
+                            if (i % 2 == 0) {
+                                $('.red-screen').css('opacity', '0.4');
+                            }
+                            else {
+                                $('.red-screen').css('opacity', '0.8');
+                            }
+                            if (i <= 0) {
+                                clearInterval(flasher);
+                                $('.red-screen').css('display', 'none');
+                            }
+                            i--;
+                        }, 200);
                     }
 
                     if (local_sync) {
@@ -148,7 +167,7 @@
                             let json_info = JSON.parse(event.json_data);
                             let infos = `Device logged : bpm ${json_info.bpm},temperature:${json_info.temperature} and for acceleration informations x:${json_info.acceleration_x},y:${json_info.acceleration_y},z:${json_info.acceleration_z}`;
                             let color = ''
-                            if(json_info.bpm < 30 || json_info.bpm > 150 || json_info.temperature > 40 || json_info.temperature < 10) color = 'red';
+                            if (json_info.bpm < 30 || json_info.bpm > 150 || json_info.temperature > 40 || json_info.temperature < 10) color = 'red';
                             let element = $(notification_template(
                                 "Event",
                                 event.created_at,
@@ -186,6 +205,21 @@
                         } else {
                             console.log("Vibration API not supported");
                         }
+                        let i = 10;
+                        $('.red-screen').css('display', 'block');
+                        let flasher = setInterval(function () {
+                            if (i % 2 == 0) {
+                                $('.red-screen').css('opacity', '0.4');
+                            }
+                            else {
+                                $('.red-screen').css('opacity', '0.8');
+                            }
+                            if (i <= 0) {
+                                clearInterval(flasher);
+                                $('.red-screen').css('display', 'none');
+                            }
+                            i--;
+                        }, 200);
                     }
 
                     local_sync.forEach((event) => {
@@ -193,7 +227,7 @@
                             let json_info = JSON.parse(event.json_data);
                             let infos = `Device logged : bpm ${json_info.bpm},temperature:${json_info.temperature} and for acceleration informations x:${json_info.acceleration_x},y:${json_info.acceleration_y},z:${json_info.acceleration_z}`;
                             let color = ''
-                            if(json_info.bpm < 30 || json_info.bpm > 150 || json_info.temperature > 40 || json_info.temperature < 10) color = 'red';
+                            if (json_info.bpm < 30 || json_info.bpm > 150 || json_info.temperature > 40 || json_info.temperature < 10) color = 'red';
                             let element = $(notification_template(
                                 "Event",
                                 event.created_at,
@@ -211,9 +245,10 @@
             });
         }
 
-        getUpdatedInfo();
-
-
+        $("#start_button").click(function(){
+            $(".splah_screen").fadeOut();
+            getUpdatedInfo();
+        })
 
         $(".notification_bell_container,.close_notifications").click(function () {
             $(".notifications").toggleClass("hidden");
