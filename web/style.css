@@ -1,0 +1,344 @@
+@font-face {
+    font-family: bolderFont;
+    src: url(fonts/Fontspring-DEMO-eurocine-narrow.ttf);
+}
+
+@font-face {
+    font-family: elegantNumber;
+    src: url(fonts/Kinn-Light.ttf);
+}
+
+@font-face {
+    font-family: allText;
+    src: url(fonts/MornLight.ttf);
+}
+
+html,
+body {
+    font-family: allText;
+}
+
+.section-4 {
+    width: 100%;
+    max-width: 400px;
+    min-width: 300px;
+    background-color: #fff;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+    display: flex;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 1px solid black;
+    position: relative;
+}
+
+.body-2 {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.heading-15 {
+    color: #8c35ff;
+    margin-top: 44px;
+    margin-bottom: 0;
+    font-family: bolderFont;
+    padding-left: 10px;
+}
+
+
+.div-block-5 {
+    width: 200px;
+    height: 200px;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    text-align: center;
+    background-color: #fcf5f4;
+    border-radius: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0%;
+    margin-left: 0;
+    margin-right: 0;
+    display: flex;
+    position: relative;
+    box-shadow: 0 0 20px 20px rgba(0, 30, 255, .2);
+}
+
+.div-block-6 {
+    width: 240px;
+    height: 240px;
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid #fff;
+    border-radius: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    position: relative;
+    overflow: visible;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, .2);
+}
+
+.text-block-7 {
+    font-size: 52px;
+    line-height: 52px;
+    display: inline;
+}
+
+.text-block-8 {
+    margin-top: 0;
+    font-size: 20px;
+    display: block;
+    position: absolute;
+    right: -18px;
+    top: -3px;
+}
+
+.div-block-7 {
+    position: relative;
+    font-family: elegantNumber;
+}
+
+.div-block-8 {
+    width: 2px;
+    height: 10px;
+    background-color: #cf159e;
+    position: absolute;
+    top: -21.5px;
+}
+
+.div-block-9 {
+    width: 100%;
+    grid-column-gap: 80px;
+    grid-row-gap: 80px;
+    flex: 1;
+    justify-content: space-between;
+    margin-top: 41px;
+    display: flex;
+    position: relative;
+}
+
+.div-b-1 {
+    width: 50%;
+    height: 100%;
+    background-color: #f4f3f0;
+    border-top-right-radius: 50px;
+    position: absolute;
+    bottom: 0;
+    left: -30px;
+}
+
+.div-b-2 {
+    width: 50%;
+    height: 100%;
+    background-color: #f4f3f0;
+    border-top-left-radius: 50px;
+    position: absolute;
+    bottom: 0;
+    right: -36px;
+}
+
+.div-b {
+    width: 100%;
+    height: 80%;
+    background-color: #f4f3f0;
+    justify-content: center;
+    align-items: center;
+    margin-top: 56px;
+    margin-left: 0;
+    margin-right: 0;
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: auto;
+}
+
+.div-c {
+    width: 60px;
+    height: 100%;
+    background-color: #fff;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+    padding-left: 0;
+    display: flex;
+}
+
+.div-block-10 {
+    z-index: 10;
+    width: 100px;
+    height: 100px;
+    background-color: #5e616b;
+    border-radius: 100%;
+    position: relative;
+    box-shadow: 0 0 20px 13px rgba(0, 0, 0, .2);
+}
+
+.div-block-11 {
+    width: 50%;
+    flex: 0 auto;
+    padding-top: 50px;
+    padding-left: 10px;
+    position: relative;
+}
+
+.div-block-12 {
+    width: 50%;
+    text-align: right;
+    flex: 0 auto;
+    padding-top: 50px;
+    padding-right: 10px;
+    position: relative;
+}
+
+.heading-16 {
+    font-size: 38px;
+    font-family: elegantNumber;
+}
+
+.text-span-2 {
+    font-size: 24px;
+}
+
+.paragraph-3 {
+    padding-top: 0;
+    padding-right: 0;
+    font-size: 28px;
+    line-height: 44px;
+    font-family: elegantNumber;
+    margin-top: 0;
+}
+
+.image-3 {
+    width: 50px;
+    animation: scaleAnimation 1s alternate infinite;
+}
+
+@keyframes scaleAnimation {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.2);
+    }
+}
+
+.image-4 {
+    width: 50px;
+    margin-bottom: 20px;
+}
+
+.text-span-3,
+.text-span-4 {
+    font-size: 20px;
+}
+
+.text-span-5 {
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.superscript,
+.superscript-2 {
+    line-height: 24px;
+}
+
+.div-block-13 {
+    width: 80px;
+    height: 50%;
+    color: #f4f3f0;
+    background-color: #f4f3f0;
+    position: absolute;
+    bottom: 0;
+}
+
+.notification_bell_container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.notification_bell {
+    height: 50px;
+}
+
+.notification_counter {
+    position: absolute;
+    background-color: #cf159e;
+    color: #f4f3f0;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    font-size: 10px;
+    padding-top: 2.5px;
+    box-sizing: border-box;
+    border-radius: 100%;
+    right: 4px;
+    top: 4px;
+}
+
+.notifications {
+    position: fixed;
+    background-color: aliceblue;
+    height: 100%;
+    width: 80%;
+    max-width: 400px;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    overflow: auto;
+    padding: 30px 20px;
+    transition: transform 0.6s ease-in-out;
+    transform: translateX(0px);
+}
+
+.notifications.hidden {
+    transform: translateX(-500px);
+    /* on notification click we shall translate it back to 0 */
+}
+
+.notification-entry {
+    border-bottom: 1px #000 solid;
+    margin: 10px 0px;
+}
+
+.notification-entry p {
+    font-size: 14px;
+}
+
+.notification-entry h1 {
+    font-size: 20px;
+    color: #8c35ff;
+}
+
+.close_notifications {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    border: 1px solid black;
+    padding: 5px;
+    width: 10px;
+    height: 10px;
+    font-size: 10px;
+    border-radius: 100%;
+    text-align: center;
+    cursor: pointer;
+}
+
+.paragraph-30 {
+    padding-left: 10px;
+}
+
+time{
+    font-weight: 100;
+    font-size: 8px;
+}

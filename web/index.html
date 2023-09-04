@@ -12,332 +12,7 @@
     <meta name="theme-color" content="#8c35ff" />
     <!-- Set title of web page -->
     <title>Cattle care system</title>
-
-    <style>
-        @font-face {
-            font-family: bolderFont;
-            src: url(fonts/Fontspring-DEMO-eurocine-narrow.ttf);
-        }
-        @font-face {
-            font-family: elegantNumber;
-            src: url(fonts/Kinn-Light.ttf);
-        }
-        @font-face {
-            font-family: allText;
-            src: url(fonts/MornLight.ttf);
-        }
-        html,body{
-            font-family: allText;
-        }
-        .section-4 {
-            width: 100%;
-            max-width: 400px;
-            min-width: 300px;
-            background-color: #fff;
-            flex-direction: column;
-            margin-left: auto;
-            margin-right: auto;
-            padding-left: 0;
-            padding-right: 0;
-            display: flex;
-            overflow: hidden;
-            border-radius: 20px;
-            border: 1px solid black;
-            position: relative;
-        }
-
-        .body-2 {
-            padding-left: 0;
-            padding-right: 0;
-        }
-
-        .heading-15 {
-            color: #8c35ff;
-            margin-top: 44px;
-            margin-bottom: 0;
-            font-family: bolderFont;
-            padding-left: 10px;
-        }
-        
-
-        .div-block-5 {
-            width: 200px;
-            height: 200px;
-            grid-column-gap: 10px;
-            grid-row-gap: 10px;
-            text-align: center;
-            background-color: #fcf5f4;
-            border-radius: 100%;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin-top: 0%;
-            margin-left: 0;
-            margin-right: 0;
-            display: flex;
-            position: relative;
-            box-shadow: 0 0 20px 20px rgba(0, 30, 255, .2);
-        }
-
-        .div-block-6 {
-            width: 240px;
-            height: 240px;
-            background-color: rgba(0, 0, 0, 0);
-            border: 1px solid #fff;
-            border-radius: 100%;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-            margin-left: auto;
-            margin-right: auto;
-            display: flex;
-            position: relative;
-            overflow: visible;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, .2);
-        }
-
-        .text-block-7 {
-            font-size: 52px;
-            line-height: 52px;
-            display: inline;
-        }
-
-        .text-block-8 {
-            margin-top: 0;
-            padding-left: 84px;
-            font-size: 20px;
-            display: block;
-            position: absolute;
-            top: -1px;
-        }
-
-        .div-block-7 {
-            position: relative;
-            font-family: elegantNumber;
-        }
-
-        .div-block-8 {
-            width: 2px;
-            height: 10px;
-            background-color: #cf159e;
-            position: absolute;
-            top: -21.5px;
-        }
-
-        .div-block-9 {
-            width: 100%;
-            grid-column-gap: 80px;
-            grid-row-gap: 80px;
-            flex: 1;
-            justify-content: space-between;
-            margin-top: 41px;
-            display: flex;
-            position: relative;
-        }
-
-        .div-b-1 {
-            width: 50%;
-            height: 100%;
-            background-color: #f4f3f0;
-            border-top-right-radius: 50px;
-            position: absolute;
-            bottom: 0;
-            left: -30px;
-        }
-
-        .div-b-2 {
-            width: 50%;
-            height: 100%;
-            background-color: #f4f3f0;
-            border-top-left-radius: 50px;
-            position: absolute;
-            bottom: 0;
-            right: -36px;
-        }
-
-        .div-b {
-            width: 100%;
-            height: 80%;
-            background-color: #f4f3f0;
-            justify-content: center;
-            align-items: center;
-            margin-top: 56px;
-            margin-left: 0;
-            margin-right: 0;
-            display: flex;
-            position: absolute;
-            bottom: 0;
-            left: auto;
-        }
-
-        .div-c {
-            width: 60px;
-            height: 100%;
-            background-color: #fff;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin-left: 5px;
-            padding-left: 0;
-            display: flex;
-        }
-
-        .div-block-10 {
-            z-index: 10;
-            width: 100px;
-            height: 100px;
-            background-color: #5e616b;
-            border-radius: 100%;
-            position: relative;
-            box-shadow: 0 0 20px 13px rgba(0, 0, 0, .2);
-        }
-
-        .div-block-11 {
-            width: 50%;
-            flex: 0 auto;
-            padding-top: 50px;
-            padding-left: 10px;
-            position: relative;
-        }
-
-        .div-block-12 {
-            width: 50%;
-            text-align: right;
-            flex: 0 auto;
-            padding-top: 50px;
-            padding-right: 10px;
-            position: relative;
-        }
-
-        .heading-16 {
-            font-size: 38px;
-            font-family: elegantNumber;
-        }
-
-        .text-span-2 {
-            font-size: 24px;
-        }
-
-        .paragraph-3 {
-            padding-top: 0;
-            padding-right: 0;
-            font-size: 28px;
-            line-height: 44px;
-            font-family: elegantNumber;
-            margin-top: 0;
-        }
-
-        .image-3 {
-            width: 50px;
-            animation: scaleAnimation 1s alternate infinite;
-        }
-
-        @keyframes scaleAnimation {
-            0% {
-                transform: scale(1);
-            }
-            100% {
-                transform: scale(1.2);
-            }
-        }
-
-        .image-4 {
-            width: 50px;
-            margin-bottom: 20px;
-        }
-
-        .text-span-3,
-        .text-span-4 {
-            font-size: 20px;
-        }
-
-        .text-span-5 {
-            font-size: 20px;
-            line-height: 24px;
-        }
-
-        .superscript,
-        .superscript-2 {
-            line-height: 24px;
-        }
-
-        .div-block-13 {
-            width: 80px;
-            height: 50%;
-            color: #f4f3f0;
-            background-color: #f4f3f0;
-            position: absolute;
-            bottom: 0;
-        }
-        .notification_bell_container{
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            cursor: pointer;
-        }
-        .notification_bell{
-            height: 50px;
-        }
-        .notification_counter{
-            position: absolute;
-            background-color:#cf159e;
-            color: #f4f3f0;
-            width: 15px;
-            height: 15px;
-            text-align: center;
-            font-size: 10px;
-            padding-top: 2.5px;
-            box-sizing: border-box;
-            border-radius: 100%;
-            right: 4px;
-            top: 4px;
-        }
-        .notifications{
-            position: fixed;
-            background-color: aliceblue;
-            height: 100%;
-            width: 80%;
-            max-width: 400px;
-            left: 0;
-            top: 0;
-            z-index: 999;
-            overflow: auto;
-            padding: 30px 20px;
-            transition: transform 0.6s ease-in-out;
-            transform: translateX(0px);
-        }
-        .notifications.hidden{
-            transform: translateX(-500px); /* on notification click we shall translate it back to 0 */
-        }
-        .notification-entry{
-            border-bottom: 1px #000 solid;
-            margin : 10px 0px;
-        }
-        .notification-entry p{
-            font-size: 14px;
-        }
-        .notification-entry h1{
-            font-size: 20px;
-            color: #8c35ff;
-        }
-        .close_notifications{
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            border: 1px solid black;
-            padding: 5px;
-            width: 10px;
-            height: 10px;
-            font-size: 10px;
-            border-radius: 100%;
-            text-align: center;
-            cursor: pointer;
-        }
-        .paragraph-30{
-            padding-left: 10px;
-        }
-    </style>
-
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 
@@ -345,37 +20,19 @@
     <section class="section-4">
         <div class="notifications hidden">
             <span class="close_notifications">X</span>
-            <div class="notification-entry">
-                <h1>Title</h1>
-                <p>The content</p>
-            </div>
-            <div class="notification-entry">
-                <h1>Title</h1>
-                <p>The contentHow to align checkboxes and their labels on cross-browsers using CSS ?
-                    How to Change the Style of <a> Tag Title Attribute ?
-                    How to make textarea 100% without overflow when padding is present ?
-                    How to make HTML table expand on click usin</p>
-            </div>
-            <div class="notification-entry">
-                <h1>Title</h1>
-                <p>The content</p>
-            </div>
-            
-            <div class="notification-entry">
-                <h1>Title</h1>
-                <p>The content</p>
+            <div id="notifications_list">
             </div>
         </div>
         <div class="notification_bell_container">
             <img src="https://lordicon.com/icons/system/solid/46-notification-bell.svg" class="notification_bell">
-            <span class="notification_counter">0</span>
+            <span class="notification_counter" id="notification_counter">...</span>
         </div>
         <h1 class="heading-15">Smart Hub</h1>
         <p class="paragraph-30">Cattle care smart app</p>
         <div class="div-block-6">
             <div class="div-block-5">
                 <div class="div-block-7">
-                    <div class="text-block-7">30</div>
+                    <div class="text-block-7" id="temperature">...</div>
                     <div class="text-block-8">c</div>
                 </div>
                 <p>CATTLE <br>TEMPERATURE</p>
@@ -387,10 +44,10 @@
             <div class="div-b-1"></div>
             <div class="div-b-2"></div>
             <div class="div-block-11"><img src="images/Heart_corazón.svg.png" loading="lazy" sizes="50px" srcset="images/Heart_corazón.svg.png 500w, images/Heart_corazón.svg.png 768w" alt="" class="image-3">
-                <h1 class="heading-16">108<span class="text-span-2"><sup>BPM</sup></span></h1>
+                <h1 class="heading-16"><span id="bpm">...</span><span class="text-span-2"><sup>BPM</sup></span></h1>
             </div>
             <div class="div-block-12"><img src="images/1807247_orig.png" loading="lazy" alt="" class="image-4">
-                <p class="paragraph-3">1.35<span class="text-span-5"><sup>x</sup></span><br>1.345<span class="text-span-4"><sup class="superscript">y</sup></span><br>1.345<span class="text-span-3"><sup class="superscript-2">z</sup></span></p>
+                <p class="paragraph-3"><span id="accelerationX">...</span><span class="text-span-5"><sup>x</sup></span><br><span id="accelerationY">...</span><span class="text-span-4"><sup class="superscript">y</sup></span><br><span id="accelerationZ">...</span><span class="text-span-3"><sup class="superscript-2">z</sup></span></p>
             </div>
         </div>
     </section>
@@ -408,18 +65,74 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-    $(document).ready(function(){
+    const notification_template = (title, time, content) => `
+                <div class="notification-entry">
+                    <h1>${title}</h1>
+                    <span><time>${time}</time></span>
+                    <p>${content}</p>
+                </div>`;
+
+
+    $(document).ready(function () {
+        const notification_counter = $('#notification_counter');
         if ("vibrate" in navigator) {
-            navigator.vibrate(1000);
+            //we can vibrate on notification
         } else {
             // Vibration API is not supported
-            console.log("Vibration API is not supported in this browser.");
             alert("We wont be able to notify you, your device dont support vibration");
         }
 
-        $(".notification_bell_container,.close_notifications").click(function(){
+        function getUpdatedInfo() {
+            const bpm = $("#bpm");
+            const temperature = $("#temperature");
+            const accelerationX = $("#accelerationX");
+            const accelerationY = $("#accelerationY");
+            const accelerationZ = $("#accelerationZ");
+            const notifications_list = $("#notifications_list");
+
+            var settings = {
+                "url": "http://127.0.0.1:8000/api/cattle",
+                "method": "GET",
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "xhrFields": {
+                    "withCredentials": true
+                },
+            };
+
+            $.ajax(settings).done(function (response) {
+                if (response.length > 0) {
+                    notification_counter.text(response.length);
+                    const lastest_dash_info = $(response).get(0);
+                    const ob = JSON.parse(lastest_dash_info.json_data);
+                    temperature.text(ob.temperature.toFixed(1));
+                    bpm.text(ob.bpm);
+                    accelerationX.text(ob.acceleration_x);
+                    accelerationY.text(ob.acceleration_y);
+                    accelerationZ.text(ob.acceleration_z);
+
+                    console.log(response);
+                }
+                else {
+                    //console.log('no data')
+                }
+            }).always(function () {
+                setTimeout(getUpdatedInfo, 30000); //well managed ajax poll, we schedule a new call only when the previous finishes
+            });
+        }
+
+        getUpdatedInfo();
+
+
+
+        $(".notification_bell_container,.close_notifications").click(function () {
             $(".notifications").toggleClass("hidden");
+            if ($(".notifications").hasClass('hidden')) {
+                notification_counter.text(0);
+            }
         })
     })
 </script>
+
 </html>
