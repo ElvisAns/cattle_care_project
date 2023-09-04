@@ -65,11 +65,12 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-    const notification_template = (title, time, content) => `
+    const base_url = "https://safetylocker.fly.dev"
+    const notification_template = (title, time, content, color) => `
                 <div class="notification-entry">
                     <h1>${title}</h1>
                     <span><time>${time}</time></span>
-                    <p>${content}</p>
+                    <p style="color:${color}">${content}</p>
                 </div>`;
 
 
@@ -82,6 +83,19 @@
             alert("We wont be able to notify you, your device dont support vibration");
         }
 
+        var poll_delay = 30000;
+
+        var settings = {
+            "url": `${base_url}/api/cattle`,
+            "method": "GET",
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "xhrFields": {
+                "withCredentials": true
+            },
+        };
+
         function getUpdatedInfo() {
             const bpm = $("#bpm");
             const temperature = $("#temperature");
@@ -90,19 +104,14 @@
             const accelerationZ = $("#accelerationZ");
             const notifications_list = $("#notifications_list");
 
-            var settings = {
-                "url": "https://safetylocker.fly.dev/api/cattle",
-                "method": "GET",
-                "headers": {
-                    "Content-Type": "application/json"
-                },
-                "xhrFields": {
-                    "withCredentials": true
-                },
-            };
 
             $.ajax(settings).done(function (response) {
-                if (response.length > 0) {
+                if ("message" in response) {//request was for data clearence
+                    //ok poll free
+                    poll_delay = 30000;
+                    settings.url = `${base_url}/api/cattle`;
+                }
+                else if (response.length > 0) {
                     notification_counter.text(response.length);
                     const lastest_dash_info = $(response).get(0);
                     const ob = JSON.parse(lastest_dash_info.json_data);
@@ -111,14 +120,94 @@
                     accelerationX.text(ob.acceleration_x);
                     accelerationY.text(ob.acceleration_y);
                     accelerationZ.text(ob.acceleration_z);
+                    let local_sync = localStorage.getItem('events');
 
-                    console.log(response);
+
+                    if (ob.bpm < 30 || ob.bpm > 150 || ob.temperature > 40 || ob.temperature < 10) {
+                        if ("vibrate" in navigator) {
+                            navigator.vibrate([500, 200, 500, 1000]);
+                        } else {
+                            console.log("Vibration API not supported");
+                        }
+                    }
+
+                    if (local_sync) {
+                        local_sync = JSON.parse(local_sync);
+                        let c = response;
+                        c.reverse();
+                        local_sync = local_sync.concat(c);
+                        localStorage.setItem('events', JSON.stringify(local_sync));
+                    }
+                    else {
+                        localStorage.setItem('events', JSON.stringify(response));
+                    }
+                    local_sync = localStorage.getItem('events');
+                    local_sync = JSON.parse(local_sync);
+                    local_sync.forEach((event) => {
+                        if (!$("[data-entry-time='" + event.created_at + "']").length) {
+                            let json_info = JSON.parse(event.json_data);
+                            let infos = `Device logged : bpm ${json_info.bpm},temperature:${json_info.temperature} and for acceleration informations x:${json_info.acceleration_x},y:${json_info.acceleration_y},z:${json_info.acceleration_z}`;
+                            let color = ''
+                            if(json_info.bpm < 30 || json_info.bpm > 150 || json_info.temperature > 40 || json_info.temperature < 10) color = 'red';
+                            let element = $(notification_template(
+                                "Event",
+                                event.created_at,
+                                infos,
+                                color
+                            ));
+                            element.attr("data-entry-time", event.created_at);
+                            notifications_list.prepend(element);
+                        }
+                    })
+
+                    poll_delay = 5000;
+                    settings.url = `${base_url}/api/cattle/log/confirm`; //only for the next clear poll
+
                 }
                 else {
-                    //console.log('no data')
+                    notification_counter.text(0);
+                    console.log('no data') //display existing data from local storage
+                    let local_sync = localStorage.getItem('events');
+                    local_sync = JSON.parse(local_sync);
+
+                    const lastest_local_info = $(local_sync).get(-1);
+                    const ob_locale = JSON.parse(lastest_local_info.json_data);
+
+                    temperature.text(ob_locale.temperature.toFixed(1));
+                    bpm.text(ob_locale.bpm);
+                    accelerationX.text(ob_locale.acceleration_x);
+                    accelerationY.text(ob_locale.acceleration_y);
+                    accelerationZ.text(ob_locale.acceleration_z);
+
+
+                    if (ob_locale.bpm < 30 || ob_locale.bpm > 150 || ob_locale.temperature > 40 || ob_locale.temperature < 10) {
+                        if ("vibrate" in navigator) {
+                            navigator.vibrate([500, 200, 500, 1000]);
+                        } else {
+                            console.log("Vibration API not supported");
+                        }
+                    }
+
+                    local_sync.forEach((event) => {
+                        if (!$("[data-entry-time='" + event.created_at + "']").length) {
+                            let json_info = JSON.parse(event.json_data);
+                            let infos = `Device logged : bpm ${json_info.bpm},temperature:${json_info.temperature} and for acceleration informations x:${json_info.acceleration_x},y:${json_info.acceleration_y},z:${json_info.acceleration_z}`;
+                            let color = ''
+                            if(json_info.bpm < 30 || json_info.bpm > 150 || json_info.temperature > 40 || json_info.temperature < 10) color = 'red';
+                            let element = $(notification_template(
+                                "Event",
+                                event.created_at,
+                                infos,
+                                color
+                            ));
+                            element.attr("data-entry-time", event.created_at);
+                            notifications_list.prepend(element);
+                        }
+                    })
                 }
+
             }).always(function () {
-                setTimeout(getUpdatedInfo, 30000); //well managed ajax poll, we schedule a new call only when the previous finishes
+                setTimeout(getUpdatedInfo, poll_delay); //well managed ajax poll, we schedule a new call only when the previous finishes
             });
         }
 
