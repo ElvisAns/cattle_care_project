@@ -83,8 +83,18 @@
     const events = localStorage.getItem("events");
 
     if (!events) {
-        localStorage.setItem("events", `[{"created_at": "2023-09-27T02:14:21.000000Z","json_data": "{\"bpm\":0,\"temperature\":0,\"acceleration_x\":1,\"acceleration_y\":1,\"acceleration_z\":1}"}]`);
+        localStorage.setItem("events", JSON.stringify([{
+            "created_at": "2023-09-27T02:14:21.000000Z",
+            "json_data": {
+                "bpm": 0,
+                "temperature": 0,
+                "acceleration_x": 1,
+                "acceleration_y": 1,
+                "acceleration_z": 1
+            }
+        }]));
     }
+
 
     const base_url = "https://demo.kvolts-lab.com"
     const notification_template = (title, time, content, color) => `
