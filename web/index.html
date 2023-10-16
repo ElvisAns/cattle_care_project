@@ -48,11 +48,17 @@
             </div>
             <div class="div-b-1"></div>
             <div class="div-b-2"></div>
-            <div class="div-block-11"><img src="images/Heart_corazón.svg.png" loading="lazy" sizes="50px" srcset="images/Heart_corazón.svg.png 500w, images/Heart_corazón.svg.png 768w" alt="" class="image-3">
+            <div class="div-block-11"><img src="images/Heart_corazón.svg.png" loading="lazy" sizes="50px"
+                    srcset="images/Heart_corazón.svg.png 500w, images/Heart_corazón.svg.png 768w" alt=""
+                    class="image-3">
                 <h1 class="heading-16"><span id="bpm">...</span><span class="text-span-2"><sup>BPM</sup></span></h1>
             </div>
             <div class="div-block-12"><img src="images/1807247_orig.png" loading="lazy" alt="" class="image-4">
-                <p class="paragraph-3"><span id="accelerationX">...</span><span class="text-span-5"><sup>x</sup></span><br><span id="accelerationY">...</span><span class="text-span-4"><sup class="superscript">y</sup></span><br><span id="accelerationZ">...</span><span class="text-span-3"><sup class="superscript-2">z</sup></span></p>
+                <p class="paragraph-3"><span id="accelerationX">...</span><span
+                        class="text-span-5"><sup>x</sup></span><br><span id="accelerationY">...</span><span
+                        class="text-span-4"><sup class="superscript">y</sup></span><br><span
+                        id="accelerationZ">...</span><span class="text-span-3"><sup class="superscript-2">z</sup></span>
+                </p>
             </div>
         </div>
     </section>
@@ -68,9 +74,17 @@
         </style>
     </div>
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     var audio = new Audio("mixkit-security-facility-breach-alarm-994.wav");
+
+    const events = localStorage.getItem("events");
+
+    if (!events) {
+        localStorage.setItem("events", `[{"created_at": "2023-09-27T02:14:21.000000Z","json_data": "{\"bpm\":0,\"temperature\":0,\"acceleration_x\":1,\"acceleration_y\":1,\"acceleration_z\":1}"}]`);
+    }
 
     const base_url = "https://demo.kvolts-lab.com"
     const notification_template = (title, time, content, color) => `
@@ -249,7 +263,7 @@
             });
         }
 
-        $("#start_button").click(function(){
+        $("#start_button").click(function () {
             $(".splah_screen").fadeOut();
             getUpdatedInfo();
         })
