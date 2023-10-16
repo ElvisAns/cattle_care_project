@@ -70,6 +70,8 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
+    var audio = new Audio("mixkit-security-facility-breach-alarm-994.wav");
+
     const base_url = "https://demo.kvolts-lab.com"
     const notification_template = (title, time, content, color) => `
                 <div class="notification-entry">
@@ -130,6 +132,7 @@
                     if (ob.bpm < 30 || ob.bpm > 150 || ob.temperature > 40 || ob.temperature < 10) {
                         if ("vibrate" in navigator) {
                             navigator.vibrate([2000, 1000, 2000, 1000, 2000]);
+                            audio.play();
                         } else {
                             console.log("Vibration API not supported");
                         }
@@ -202,6 +205,7 @@
                     if (ob_locale.bpm < 30 || ob_locale.bpm > 150 || ob_locale.temperature > 40 || ob_locale.temperature < 10) {
                         if ("vibrate" in navigator) {
                             navigator.vibrate([500, 200, 500, 1000]);
+                            audio.play();
                         } else {
                             console.log("Vibration API not supported");
                         }
