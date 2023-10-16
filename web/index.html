@@ -85,13 +85,13 @@
     if (!events) {
         localStorage.setItem("events", JSON.stringify([{
             "created_at": "2023-09-27T02:14:21.000000Z",
-            "json_data": {
+            "json_data": JSON.stringify({
                 "bpm": 0,
                 "temperature": 0,
-                "acceleration_x": 1,
-                "acceleration_y": 1,
-                "acceleration_z": 1
-            }
+                "acceleration_x": 0,
+                "acceleration_y": 0,
+                "acceleration_z": 0
+            })
         }]));
     }
 
